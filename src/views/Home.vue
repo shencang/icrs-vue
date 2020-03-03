@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <nav-menu></nav-menu>
-    <img alt="Vue logo" src="../assets/acg2.png">
     <router-view></router-view>
 <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
   </div>
