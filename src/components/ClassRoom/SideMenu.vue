@@ -10,27 +10,19 @@
         </el-menu-item>
         <el-menu-item index="1">
             <i class="el-icon-menu"></i>
-            <span slot="title">文学</span>
+            <span slot="title">50人</span>
         </el-menu-item>
         <el-menu-item index="2">
             <i class="el-icon-menu"></i>
-            <span slot="title">流行</span>
+            <span slot="title">100人</span>
         </el-menu-item>
         <el-menu-item index="3">
             <i class="el-icon-menu"></i>
-            <span slot="title">文化</span>
+            <span slot="title">150人</span>
         </el-menu-item>
         <el-menu-item index="4">
             <i class="el-icon-menu"></i>
-            <span slot="title">生活</span>
-        </el-menu-item>
-        <el-menu-item index="5">
-            <i class="el-icon-menu"></i>
-            <span slot="title">经管</span>
-        </el-menu-item>
-        <el-menu-item index="6">
-            <i class="el-icon-menu"></i>
-            <span slot="title">科技</span>
+            <span slot="title">200人</span>
         </el-menu-item>
     </el-menu>
 </template>
