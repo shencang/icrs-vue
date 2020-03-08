@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from "@/components/Login";
 import AppIndex from "@/components/AppIndex";
 import LibraryIndex from "@/components/library/LibraryIndex";
+import ClassroomIndex from "@/components/ClassRoom/ClassroomIndex";
 
 Vue.use(VueRouter);
 
@@ -29,9 +30,9 @@ const routes = [
                 }
             },
             {
-                path: '/library',
-                name:'Library',
-                component: LibraryIndex,
+                path: '/classroom',
+                name:'ClassRoom',
+                component: ClassroomIndex,
                 meta: {
                     requireAuth: true
                 }

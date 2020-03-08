@@ -12,16 +12,16 @@
 
 <script>
     import SideMenu from './SideMenu'
-    import Books from './Books'
+    import Books from './ClassRooms'
 
     export default {
-        name: 'AppLibrary',
+        name: 'AppClassRoom',
         components: {Books, SideMenu},
         methods: {
             listByCategory () {
-                var _this = this
-                var cid = this.$refs.sideMenu.cid
-                var url = 'categories/' + cid + '/books'
+                const _this = this;
+                const cid = this.$refs.sideMenu.cid;
+                const url = 'categories/' + cid + '/books';
                 this.$axios.get(url).then(resp => {
                     if (resp && resp.status === 200) {
                         _this.$refs.booksArea.books = resp.data
