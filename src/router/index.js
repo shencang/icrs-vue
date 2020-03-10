@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "@/components/Login";
 import AppIndex from "@/components/AppIndex";
-import LibraryIndex from "@/components/library/LibraryIndex";
 import ClassroomIndex from "@/components/ClassRoom/ClassroomIndex";
 
 Vue.use(VueRouter);
