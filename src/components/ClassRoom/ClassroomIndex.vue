@@ -5,18 +5,18 @@
             <SideMenu @indexSelect="listByCategory" ref="sideMenu"></SideMenu>
         </el-aside>
         <el-main>
-            <books class="books-area" ref="booksArea"></books>
+            <rooms class="rooms-area" ref="roomsArea"></rooms>
         </el-main>
     </el-container>
 </template>
 
 <script>
     import SideMenu from './SideMenu'
-    import Books from './ClassRooms'
+    import Rooms from "@/components/ClassRoom/ClassRooms";
 
     export default {
         name: 'AppClassRoom',
-        components: {Books, SideMenu},
+        components: {Rooms,  SideMenu},
         methods: {
             listByCategory () {
                 const _this = this;
@@ -33,7 +33,7 @@
 </script>
 
 <style scoped>
-    .books-area {
+    .rooms-area {
         width: 990px;
         margin-left: auto;
         margin-right: auto;

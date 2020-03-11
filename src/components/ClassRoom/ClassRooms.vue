@@ -3,37 +3,44 @@
         <el-row style="height: 840px;">
             <search-bar @onSearch="searchResult" ref="searchBar"></search-bar>
             <el-tooltip effect="dark" placement="right"
-                        v-for="item in books.slice((currentPage-1)*pagesize,currentPage*pagesize)"
-                        :key="item.id">
-                <p slot="content" style="font-size: 14px;margin-bottom: 6px;">{{item.title}}</p>
+                        v-for="item in rooms.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+                        :key="item.roomId">
+                <p slot="content" style="font-size: 14px;margin-bottom: 6px;">{{item.roomName}}</p>
                 <p slot="content" style="font-size: 13px;margin-bottom: 6px">
-                    <span>{{item.author}}</span> /
-                    <span>{{item.date}}</span> /
-                    <span>{{item.press}}</span>
+                    <span>{{item.roomNum}}</span> /
+                    <span>{{item.roomName}}</span> /
+                    <span>{{item.description}}</span>
                 </p>
-                <p slot="content" style="width: 300px" class="abstract">{{item.abs}}</p>
-                <el-card style="width: 135px;margin-bottom: 20px;height: 233px;float: left;margin-right: 15px" class="book"
+                <p slot="content" style="width: 300px" class="abstract">{{item.status}}</p>
+                <el-card style="width: 135px;margin-bottom: 20px;height: 233px;float: left;margin-right: 15px" class="room"
                          bodyStyle="padding:10px" shadow="hover">
-                    <div class="cover" @click="editBook(item)">
-                        <img :src="item.cover" alt="封面">
+                    <div class="cover" @click="editRoom(item)">
+                        <br>
+                        {{item.roomNum}}
+                        <br>
+                        <span>{{item.roomName}}</span>
+                        <br>
+                        <span>{{item.capacity}}</span>
+                        <br>
+                        <span>{{item.position}}</span>
                     </div>
                     <div class="info">
                         <div class="title">
-                            <a href="">{{item.title}}</a>
+                            <a href="">{{item.roomName}}</a>
                         </div>
-                        <i class="el-icon-delete" @click="deleteBook(item.id)"></i>
+                        <i class="el-icon-delete" @click="deleteRoom(item.id)"></i>
                     </div>
-                    <div class="author">{{item.author}}</div>
+                    <div class="author">{{item.description}}</div>
                 </el-card>
             </el-tooltip>
-            <edit-form @onSubmit="loadBooks()" ref="edit"></edit-form>
+            <edit-form @onSubmit="loadRooms()" ref="edit"></edit-form>
         </el-row>
         <el-row>
             <el-pagination
                     @current-change="handleCurrentChange"
                     :current-page="currentPage"
                     :page-size="pagesize"
-                    :total="books.length">
+                    :total="rooms.length">
             </el-pagination>
         </el-row>
     </div>
@@ -43,24 +50,24 @@
     import EditForm from './EditForm'
     import SearchBar from './SearchBar'
     export default {
-        name: 'Books',
+        name: 'Rooms',
         components: {EditForm, SearchBar},
         data () {
             return {
-                books: [],
+                rooms: [],
                 currentPage: 1,
                 pagesize: 17
             }
         },
         mounted: function () {
-            this.loadBooks()
+            this.loadRooms()
         },
         methods: {
-            loadBooks () {
+            loadRooms () {
                 const _this = this;
                 this.$axios.get('/rooms').then(resp => {
                     if (resp && resp.status === 200) {
-                        _this.books = resp.data
+                        _this.rooms = resp.data
                     }
                 })
             },
@@ -74,11 +81,11 @@
                     .get('/search?keywords=' + this.$refs.searchBar.keywords, {
                     }).then(resp => {
                     if (resp && resp.status === 200) {
-                        _this.books = resp.data
+                        _this.rooms = resp.data
                     }
                 })
             },
-            deleteBook (id) {
+            deleteRoom (id) {
                 this.$confirm('此操作将永久删除该书籍, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
@@ -87,7 +94,7 @@
                         this.$axios
                             .post('/delete', {id: id}).then(resp => {
                             if (resp && resp.status === 200) {
-                                this.loadBooks()
+                                this.loadRooms()
                             }
                         })
                     }
@@ -99,20 +106,17 @@
                 })
                 // alert(id)
             },
-            editBook (item) {
+            editRoom (item) {
                 this.$refs.edit.dialogFormVisible = true;
                 this.$refs.edit.form = {
-                    id: item.id,
-                    cover: item.cover,
-                    title: item.title,
-                    author: item.author,
-                    date: item.date,
-                    press: item.press,
-                    abs: item.abs,
-                    category: {
-                        id: item.category.id.toString(),
-                        name: item.category.name
-                    }
+                    roomId: item.roomId,
+                    roomNum: item.roomNum,
+                    roomName: item.roomName,
+                    capacity: item.capacity,
+                    status: item.status,
+                    position: item.position,
+                    description: item.description,
+
                 }
             }
         }

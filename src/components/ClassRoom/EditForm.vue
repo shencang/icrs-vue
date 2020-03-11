@@ -2,7 +2,7 @@
     <div>
         <i class="el-icon-circle-plus-outline"  @click="dialogFormVisible = true"></i>
         <el-dialog
-                title="添加/修改图书"
+                title="查看图书信息"
                 :visible.sync="dialogFormVisible"
                 @close="clear">
             <el-form v-model="form" style="text-align: left" ref="dataForm">
