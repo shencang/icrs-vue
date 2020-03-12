@@ -18,7 +18,7 @@
         data () {
             return {
                 keywords: '',
-                books: [],
+                rooms: [],
                 cardLoading: []
             }
         },

@@ -28,7 +28,7 @@
                         <div class="title">
                             <a href="">{{item.roomName}}</a>
                         </div>
-                        <i class="el-icon-delete" @click="deleteRoom(item.id)"></i>
+                        <i class="el-icon-delete" @click="deleteRoom(item.roomId)"></i>
                     </div>
                     <div class="author">{{item.description}}</div>
                 </el-card>
@@ -85,14 +85,14 @@
                     }
                 })
             },
-            deleteRoom (id) {
-                this.$confirm('此操作将永久删除该书籍, 是否继续?', '提示', {
+            deleteRoom (roomId) {
+                this.$confirm('此操作将永久删除该教室, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
                         this.$axios
-                            .post('/delete', {id: id}).then(resp => {
+                            .post('/rooms/delete', {roomId: roomId}).then(resp => {
                             if (resp && resp.status === 200) {
                                 this.loadRooms()
                             }

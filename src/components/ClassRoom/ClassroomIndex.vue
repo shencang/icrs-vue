@@ -2,7 +2,7 @@
     <el-container>
         <el-aside style="width: 200px;margin-top: 20px">
             <switch></switch>
-            <SideMenu @indexSelect="listByCategory" ref="sideMenu"></SideMenu>
+            <SideMenu @indexSelect="listByCapacity" ref="sideMenu"></SideMenu>
         </el-aside>
         <el-main>
             <rooms class="rooms-area" ref="roomsArea"></rooms>
@@ -11,20 +11,20 @@
 </template>
 
 <script>
-    import SideMenu from './SideMenu'
+    import SideMenu from '@/components/ClassRoom/SideMenu'
     import Rooms from "@/components/ClassRoom/ClassRooms";
 
     export default {
         name: 'AppClassRoom',
         components: {Rooms,  SideMenu},
         methods: {
-            listByCategory () {
+            listByCapacity () {
                 const _this = this;
                 const cid = this.$refs.sideMenu.cid;
-                const url = 'categories/' + cid + '/books';
+                const url = '/rooms/capacity/' + cid + '/rooms';
                 this.$axios.get(url).then(resp => {
                     if (resp && resp.status === 200) {
-                        _this.$refs.booksArea.books = resp.data
+                        _this.$refs.roomsArea.rooms = resp.data
                     }
                 })
             }
