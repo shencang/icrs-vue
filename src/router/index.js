@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import Login from "@/components/Login";
 import AppIndex from "@/components/AppIndex";
 import ClassroomIndex from "@/components/ClassRoom/ClassroomIndex";
+import PersonalIndex from "@/components/Personal/PersonalIndex";
+import NoticeIndex from "@/components/Notice/NoticeIndex";
 
 Vue.use(VueRouter);
 
@@ -14,7 +16,7 @@ const routes = [
         component: Login
     },
     {
-        path: '/home',
+        path: '/',
         name: 'Home',
         component: Home,
         // home页面并不需要被访问
@@ -35,18 +37,32 @@ const routes = [
                 meta: {
                     requireAuth: true
                 }
+            },
+            {
+                path: '/personal',
+                name:'Personal',
+                component: PersonalIndex,
+                meta: {
+                    requireAuth: true
+                }
+            },
+            {
+                path: '/Notice',
+                name:'Notice',
+                component: NoticeIndex,
+                meta: {
+                    requireAuth: true
+                }
             }
 
         ]
     },
-    {
-        path: '/',
-        // name: 'Home',
-        // component: Home
-        name: 'Login',
-        component: Login
-
-    },
+   // {
+   //     path: '/',
+   //     name: 'Home',
+   //     component: Home,
+   //
+   // },
     {
         path: '/about',
         name: 'About',
