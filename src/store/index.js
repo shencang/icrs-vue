@@ -16,10 +16,16 @@ export default new Vuex.Store({
     login(state,student){
       state.student = student;
       window.localStorage.setItem('student',JSON.stringify(student))
+    },
+    logout (state) {
+      state.student = [];
+      window.localStorage.removeItem('student')
     }
+
   },
   actions: {
   },
   modules: {
-  }
+  },
+
 })

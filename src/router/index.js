@@ -6,6 +6,7 @@ import AppIndex from "@/components/AppIndex";
 import ClassroomIndex from "@/components/ClassRoom/ClassroomIndex";
 import PersonalIndex from "@/components/Personal/PersonalIndex";
 import NoticeIndex from "@/components/Notice/NoticeIndex";
+import Register from "@/components/Register";
 
 Vue.use(VueRouter);
 
@@ -56,6 +57,14 @@ const routes = [
             }
 
         ]
+    },
+    {
+        path:'/reg',
+        name:'Register',
+        component:Register,
+        meta: {
+            requireAuth: true
+        }
     },
    // {
    //     path: '/',

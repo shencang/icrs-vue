@@ -5,7 +5,7 @@
         <el-form class="index-container" label-position="left"
                  label-width="0px">
             <el-form-item>
-                欢迎您，！
+                欢迎您，!
             </el-form-item>
             <el-form-item style="">
                 当前系统登记教室有：
