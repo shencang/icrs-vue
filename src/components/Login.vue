@@ -50,7 +50,7 @@
                         if (successResponse.data.code === 200) {
                             _this.$store.commit('login', _this.loginForm);
                             const path = this.$route.query.redirect;
-                            this.$router.replace({
+                            this.$router.replace( {
                                 path: path === '/'
                                 || path === undefined ? '/index' : path,
                                 query:{
