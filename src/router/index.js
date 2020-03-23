@@ -7,7 +7,9 @@ import ClassroomIndex from "@/components/ClassRoom/ClassroomIndex";
 import PersonalIndex from "@/components/Personal/PersonalIndex";
 import NoticeIndex from "@/components/Notice/NoticeIndex";
 import Register from "@/components/Register";
-
+import AdminIndex from "@/components/admin/AdminIndex";
+import DashBoard from "@/components/admin/dashboard/admin/index"
+import Editor from "@/components/admin/content/ArticleEditor"
 Vue.use(VueRouter);
 
 const routes = [
@@ -79,6 +81,32 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    },
+    {
+        path: '/admin',
+        name: 'Admin',
+        component: AdminIndex,
+        meta: {
+            requireAuth: true
+        },
+        children: [
+            {
+                path: '/admin/dashboard',
+                name: 'dashboard',
+                component: DashBoard,
+                meta: {
+                    requireAuth: true
+                }
+            }
+        ]
+    },
+    {
+        path: '/admin/content/editor',
+        name: 'Editor',
+        component: Editor,
+        meta: {
+            requireAuth: true
+        }
     }
 ];
 

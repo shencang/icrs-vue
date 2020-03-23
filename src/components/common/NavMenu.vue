@@ -27,7 +27,7 @@
                     {name: '/index', navItem: '首页'},
                     {name: '/notice', navItem: '最近通知'},
                     {name: '/classroom', navItem: '教室查看与预定'},
-                    {name: '/Personal', navItem: '个人中心'}
+                    {name: '/admin/dashboard', navItem: '个人中心'}
                 ]
             }
         },
