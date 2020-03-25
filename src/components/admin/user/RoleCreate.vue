@@ -70,8 +70,10 @@
               })
             }
           })
-          .catch(failResponse => {})
-        this.dialogFormVisible = false
+          .catch(failResponse => {failResponse.errors;})
+        this.dialogFormVisible = false;
+
+
       }
     }
   }

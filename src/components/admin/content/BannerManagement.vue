@@ -31,13 +31,16 @@
           fixed="right"
           label="操作"
           width="120">
-          <template slot-scope="scope">
-            <el-button
+
+          <template >
+            <!--    <template slot-scope="scope">-->
+            <el-button slot="scope"
               type="text"
               size="small">
               编辑
             </el-button>
             <el-button
+
               type="text"
               size="small">
               移除
@@ -60,5 +63,6 @@
 </script>
 
 <style scoped>
+
 
 </style>
