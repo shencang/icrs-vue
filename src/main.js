@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
           axiosQ.get('/authentication').then(resp => {
             if (resp) next()
           });
-          next()
+         // next()
         } else {
           next({
             path: 'login',
