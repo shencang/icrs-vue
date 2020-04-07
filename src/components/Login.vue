@@ -25,6 +25,7 @@
 </template>
 
 <script>
+    import {createRouter} from '../router/index'
 
     export default {
         name: 'Login',
@@ -57,6 +58,9 @@
                                     id:_this.loginForm
                                 }
                             });
+                            // 清空路由，防止路由重复加载
+                            // const newRouter = createRouter();
+                            // _this.$router.matcher = newRouter.matcher
                         }
                     })
                     .catch(failResponse => {
