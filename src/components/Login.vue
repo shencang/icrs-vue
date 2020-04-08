@@ -1,41 +1,47 @@
 <template>
     <el-card id="poster">
-        <el-form class="login-container" label-position="left"
+        <el-form :model="loginForm" :rules="rules" class="login-container" label-position="left"
                  label-width="0px">
             <h3 class="login_title">系统登录</h3>
-            <el-form-item>
+            <el-form-item prop="username">
                 <el-input type="text" v-model="loginForm.studentIdName"
                           auto-complete="off" placeholder="账号"></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item prop="password">
                 <el-input type="password" v-model="loginForm.password"
                           auto-complete="off" placeholder="密码"></el-input>
             </el-form-item>
+            <el-checkbox class="login_remember" v-model="checked"
+                         label-position="left">
+                <span style="color: #505458">记住密码</span>
+            </el-checkbox>
             <el-form-item style="width: 100%">
                 <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录
                 </el-button>
-
-            </el-form-item>
-            <el-form-item style="width: 100%">
-                <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="register">注册
-                </el-button>
+                <router-link to="register">
+                    <el-button type="primary" style="width: 40%;background: #505458;border: none">注册</el-button>
+                </router-link>
             </el-form-item>
         </el-form>
     </el-card>
 </template>
 
 <script>
-    import {createRouter} from '../router/index'
-
+    // import {createRouter} from '../router/index'
     export default {
-        name: 'Login',
         data() {
             return {
+
+                rules:{
+                    studentIdName:[{required: true, message: '用户名不能为空', trigger: 'blur'}],
+                    password:[{required: true, message: '密码不能为空', trigger: 'blur'}]
+                },
+                checked:true,
                 loginForm: {
                     studentIdName: '113',
                     password: '22'
                 },
-                responseResult: []
+               loading:false
             }
         },
         methods: {
@@ -49,18 +55,18 @@
                     })
                     .then(successResponse => {
                         if (successResponse.data.code === 200) {
-                            _this.$store.commit('login', _this.loginForm);
-                            const path = this.$route.query.redirect;
-                            this.$router.replace( {
+                            const data =successResponse.data.data;
+                            _this.$store.commit('login', data);
+                            const path = _this.$route.query.redirect;
+                            _this.$router.replace( {
                                 path: path === '/'
-                                || path === undefined ? '/index' : path,
-                                query:{
-                                    id:_this.loginForm
-                                }
-                            });
-                            // 清空路由，防止路由重复加载
-                            // const newRouter = createRouter();
-                            // _this.$router.matcher = newRouter.matcher
+                                || path === undefined ? '/admin/dashboard' : path}
+                            );
+
+                        }else {
+                            this.$alert(successResponse.data.message,'提示',{
+                                confirmButtonText:'确定'
+                            })
                         }
                     })
                     .catch(failResponse => {
@@ -104,6 +110,9 @@
         text-align: center;
         color: #505458;
     }
-
+    .login_remember {
+        margin: 0px 0px 35px 0px;
+        text-align: left;
+    }
 </style>
 
