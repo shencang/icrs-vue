@@ -111,7 +111,7 @@
         color: #505458;
     }
     .login_remember {
-        margin: 0px 0px 35px 0px;
+        margin: 1px 1px 35px 1px;
         text-align: left;
     }
 </style>
