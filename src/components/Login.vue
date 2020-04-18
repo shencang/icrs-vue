@@ -3,7 +3,7 @@
         <el-form :model="loginForm" :rules="rules" class="login-container" label-position="left"
                  label-width="0px">
             <h3 class="login_title">系统登录</h3>
-            <el-form-item prop="username">
+            <el-form-item prop="studentIdName">
                 <el-input type="text" v-model="loginForm.studentIdName"
                           auto-complete="off" placeholder="账号"></el-input>
             </el-form-item>
@@ -16,7 +16,7 @@
                 <span style="color: #505458">记住密码</span>
             </el-checkbox>
             <el-form-item style="width: 100%">
-                <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录
+                <el-button type="primary" style="width: 40%;background: #505458;border: none" v-on:click="login">登录
                 </el-button>
                 <router-link to="register">
                     <el-button type="primary" style="width: 40%;background: #505458;border: none">注册</el-button>
@@ -32,16 +32,16 @@
         data() {
             return {
 
-                rules:{
-                    studentIdName:[{required: true, message: '用户名不能为空', trigger: 'blur'}],
-                    password:[{required: true, message: '密码不能为空', trigger: 'blur'}]
+                rules: {
+                    studentIdName: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
+                    password: [{required: true, message: '密码不能为空', trigger: 'blur'}]
                 },
-                checked:true,
+                checked: true,
                 loginForm: {
                     studentIdName: '113',
                     password: '22'
                 },
-               loading:false
+                loading: false
             }
         },
         methods: {
@@ -55,17 +55,18 @@
                     })
                     .then(successResponse => {
                         if (successResponse.data.code === 200) {
-                            const data =successResponse.data.data;
+                            const data = successResponse.data.data;
                             _this.$store.commit('login', data);
                             const path = _this.$route.query.redirect;
-                            _this.$router.replace( {
-                                path: path === '/'
-                                || path === undefined ? '/admin/dashboard' : path}
+                            _this.$router.replace({
+                                    path: path === '/'
+                                    || path === undefined ? '/admin/dashboard' : path
+                                }
                             );
 
-                        }else {
-                            this.$alert(successResponse.data.message,'提示',{
-                                confirmButtonText:'确定'
+                        } else {
+                            this.$alert(successResponse.data.message, '提示', {
+                                confirmButtonText: '确定'
                             })
                         }
                     })
@@ -73,10 +74,6 @@
                         failResponse.errors
                     })
             },
-            register(){
-                const _this = this;
-                _this.$router.replace('/reg')
-            }
         }
     }
 </script>
@@ -110,6 +107,7 @@
         text-align: center;
         color: #505458;
     }
+
     .login_remember {
         margin: 1px 1px 35px 1px;
         text-align: left;

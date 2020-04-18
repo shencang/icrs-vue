@@ -1,6 +1,6 @@
 <template>
     <el-card id="paper">
-    <el-form class="login-container" label-position="left"
+    <el-form :model="loginForm" :rules="rules" class="login-container" label-position="left"
              label-width="0px" v-loading="loading">
         <h3 class="login_title">用户注册</h3>
         <el-form-item>
