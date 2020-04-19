@@ -1,7 +1,7 @@
 <template>
     <el-card id="poster">
         <el-form :model="loginForm" :rules="rules" class="login-container" label-position="left"
-                 label-width="0px">
+                 label-width="0px" v-loading="loading">
             <h3 class="login_title">系统登录</h3>
             <el-form-item prop="studentIdName">
                 <el-input type="text" v-model="loginForm.studentIdName"
@@ -18,6 +18,9 @@
             <el-form-item style="width: 100%">
                 <el-button type="primary" style="width: 40%;background: #505458;border: none" v-on:click="login">登录
                 </el-button>
+
+                <el-form-item style="width: 10%">
+                        </el-form-item>
                 <router-link to="register">
                     <el-button type="primary" style="width: 40%;background: #505458;border: none">注册</el-button>
                 </router-link>
@@ -80,7 +83,7 @@
 
 <style>
     #poster {
-        background: url("../assets/acg3.png") no-repeat center;
+        background: url("../assets/acg.png") no-repeat center;
         height: 100%;
         width: 100%;
         background-size: cover;

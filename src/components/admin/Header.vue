@@ -9,20 +9,20 @@
 </template>
 
 <script>
-  import {createRouter} from '../../router'
+  import {createRouter} from '@/router'
 
   export default {
     name: 'Header',
     methods: {
       logout () {
-        var _this = this
+        const _this = this
         this.$axios.get('/logout').then(resp => {
           if (resp.data.code === 200) {
             _this.$store.commit('logout')
             _this.$router.replace('/index')
             // 清空路由，防止路由重复加载
-            const newRouter = createRouter()
-            _this.$router.matcher = newRouter.matcher
+            //const newRouter = createRouter()
+            _this.$router.matcher = createRouter.matcher
           }
         }).catch(failResponse => {
           failResponse.errors

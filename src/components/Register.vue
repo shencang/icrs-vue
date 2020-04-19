@@ -11,6 +11,18 @@
             <el-input type="password" v-model="loginForm.password"
                       auto-complete="off" placeholder="密码"></el-input>
         </el-form-item>
+        <el-form-item>
+            <el-input type="text" v-model="loginForm.username"
+                      auto-complete="off" placeholder="姓名"></el-input>
+        </el-form-item>
+        <el-form-item>
+            <el-input type="text" v-model="loginForm.phone"
+                      auto-complete="off" placeholder="电话号码"></el-input>
+        </el-form-item>
+        <el-form-item>
+            <el-input type="text" v-model="loginForm.email"
+                      auto-complete="off" placeholder="E-Mail"></el-input>
+        </el-form-item>
         <el-form-item style="width: 100%">
             <el-button type="primary" style="width: 40%;background: #505458;border: none" v-on:click="register">注册</el-button>
         </el-form-item>
@@ -21,10 +33,17 @@
     export default{
         data () {
             return {
+                rules:{
+                    studentIdName: [{required: true, message: '学号不能为空', trigger: 'blur'}],
+                    password: [{required: true, message: '密码不能为空', trigger: 'blur'}]
+                },
                 checked: true,
                 loginForm: {
                     studentIdName: '',
-                    password: ''
+                    password: '',
+                    username: '',
+                    phone: '',
+                    email: ''
                 },
                 loading: false
             }
@@ -35,7 +54,11 @@
                 this.$axios
                     .post('/register-stu', {
                         studentIdName: this.loginForm.studentIdName,
-                        password: this.loginForm.password
+                        password: this.loginForm.password,
+                        username: this.loginForm.username,
+                        phone: this.loginForm.phone,
+                        email: this.loginForm.email
+
                     })
                     .then(resp => {
                         if (resp.data.code === 200) {
