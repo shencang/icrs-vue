@@ -8,8 +8,11 @@ export default new Vuex.Store({
     student:{
       studentIdName:window.localStorage
           .getItem('student' || '[]') ==null
-          ? '' : JSON.parse(window.localStorage
-              .getItem('student' || '[]')).studentIdName
+          ? '未登录'  : JSON.parse(window.localStorage
+              .getItem('student' || '[]')).studentIdName,
+      username: window.localStorage.getItem('student') == null
+          ? '' : JSON.parse(window.localStorage.getItem('student' || '[]')).username
+
     },
     adminMenus: []
   },
@@ -22,8 +25,11 @@ export default new Vuex.Store({
       window.localStorage.setItem('student',JSON.stringify(student))
     },
     logout (state) {
+      // 注意不能用 null 清除，否则将无法判断 user 里具体的内容
       state.student = [];
       window.localStorage.removeItem('student')
+      state.adminMenus = []
+
     },
 
 

@@ -56,7 +56,7 @@
 
 <script>
     export default {
-        name: "AppIndex",
+        name: "AppIndexBK",
         data(){
             return {
                 tableClassroom7day:[{
@@ -74,7 +74,7 @@
 
 <style scoped>
     #index {
-        background: url("../assets/bg.jpg") no-repeat center;
+        background: url("../../assets/bg.jpg") no-repeat center;
         height: 100%;
         width: 100%;
         background-size: cover;

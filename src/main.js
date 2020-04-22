@@ -52,7 +52,9 @@ axiosQ.interceptors.response.use(
     error => {
       console.log(error.response);
       if (error) {
-        router.replace('/login')
+        router.replace('/login').then(r => {
+          console.log(r.fullPath)
+        })
       }
       // 返回接口返回的错误信息
       return Promise.reject(error.response.data)

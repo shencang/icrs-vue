@@ -19,8 +19,6 @@
                 <el-button type="primary" style="width: 40%;background: #505458;border: none" v-on:click="login">登录
                 </el-button>
 
-                <el-form-item style="width: 10%">
-                        </el-form-item>
                 <router-link to="register">
                     <el-button type="primary" style="width: 40%;background: #505458;border: none">注册</el-button>
                 </router-link>
@@ -48,32 +46,32 @@
             }
         },
         methods: {
-            login() {
+           login() {
                 const _this = this;
-                console.log(this.$store.state);
+                console.log("data-1");
                 this.$axios
                     .post('/login', {
                         studentIdName: this.loginForm.studentIdName,
                         password: this.loginForm.password
                     })
-                    .then(successResponse => {
-                        if (successResponse.data.code === 200) {
-                            const data = successResponse.data.data;
+                    .then(resp => {
+                        if (resp.data.code === 200) {
+                            var data = resp.data.data;
+                            console.log("data-1");
                             _this.$store.commit('login', data);
-                            const path = _this.$route.query.redirect;
-                            _this.$router.replace({
-                                    path: path === '/'
-                                    || path === undefined ? '/admin/dashboard' : path
-                                }
-                            );
+                            var path = _this.$route.query.redirect;
+                            _this.$router.replace({path: path === '/' ||
+                                path === undefined ? '/admin/dashboard' : path});
+                            console.log("data-2");
 
                         } else {
-                            this.$alert(successResponse.data.message, '提示', {
+                            this.$alert(resp.data.message, '提示', {
                                 confirmButtonText: '确定'
                             })
                         }
                     })
                     .catch(failResponse => {
+                        console.log("data-4");
                         failResponse.errors
                     })
             },

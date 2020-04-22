@@ -11,8 +11,8 @@
 </template>
 
 <script>
-    import SideMenu from '@/components/ClassRoom/SideMenu'
-    import Rooms from "@/components/ClassRoom/ClassRooms";
+    import SideMenu from '@/components/classRoom/SideMenu'
+    import Rooms from "@/components/classRoom/ClassRooms";
 
     export default {
         name: 'AppClassRoom',
