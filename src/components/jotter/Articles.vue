@@ -10,19 +10,19 @@
             <router-link class="article-link" :to="{path:'jotter/article',query:{id: article.id}}"><p>{{article.articleAbstract}}</p></router-link>
           </div>
           <el-image
-            style="margin:18px 0 0 30px;width:100px;height: 100px"
-            :src="article.articleCover"
-            fit="cover"></el-image>
+                  style="margin:18px 0 0 30px;width:100px;height: 100px"
+                  :src="article.articleCover"
+                  fit="cover"></el-image>
           <el-divider></el-divider>
         </div>
       </el-card>
     </div>
     <el-pagination
-      background
-      layout="total, prev, pager, next, jumper"
-      @current-change="handleCurrentChange"
-      :page-size="pageSize"
-      :total="total">
+            background
+            layout="total, prev, pager, next, jumper"
+            @current-change="handleCurrentChange"
+            :page-size="pageSize"
+            :total="total">
     </el-pagination>
   </div>
 </template>
@@ -35,7 +35,7 @@
       return {
         articles: [],
         pageSize: 4,
-        total: ''
+        total: 0
       }
     },
     mounted () {
@@ -43,20 +43,20 @@
     },
     methods: {
       loadArticles () {
-        const _this = this;
+        var _this = this
         this.$axios.get('/article/' + this.pageSize + '/1').then(resp => {
-          if (resp && resp.status === 200) {
-            _this.articles = resp.data.content
-            _this.total = resp.data.totalElements
+          if (resp && resp.data.code === 200) {
+            _this.articles = resp.data.result.content
+            _this.total = resp.data.result.totalElements
           }
         })
       },
       handleCurrentChange (page) {
         var _this = this
         this.$axios.get('/article/' + this.pageSize + '/' + page).then(resp => {
-          if (resp && resp.status === 200) {
-            _this.articles = resp.data.content
-            _this.total = resp.data.totalElements
+          if (resp && resp.data.code === 200) {
+            _this.articles = resp.data.result.content
+            _this.total = resp.data.result.totalElements
           }
         })
       }

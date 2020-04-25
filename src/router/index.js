@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../components/Home.vue'
 import Login from "@/components/Login";
 import AppIndex from "@/components/home/AppIndex";
 import ClassroomIndex from "@/components/classRoom/ClassroomIndex";
@@ -34,7 +34,7 @@ const routes = [
             {
                 path: '/index',
                 name: 'AppIndex',
-                component: AppIndex,
+                component:  AppIndex
 
             },
             {
@@ -113,7 +113,7 @@ const routes = [
         children: [
             {
                 path: '/admin/dashboard',
-                name: 'dashboard',
+                name: 'Dashboard',
                 component: DashBoard,
                 meta: {
                     requireAuth: true
@@ -121,6 +121,10 @@ const routes = [
             }
         ]
     },
+    {
+        path: '*',
+        component: () => import('../components/pages/Error404')
+    }
 
 ];
 

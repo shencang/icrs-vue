@@ -10,13 +10,13 @@
     <edit-form @onSubmit="loadBooks()" ref="edit"></edit-form>
     <el-card style="margin: 18px 2%;width: 95%">
       <el-table
-        :data="books"
-        stripe
-        style="width: 100%"
-        :max-height="tableHeight">
+              :data="books"
+              stripe
+              style="width: 100%"
+              :max-height="tableHeight">
         <el-table-column
-          type="selection"
-          width="55">
+                type="selection"
+                width="55">
         </el-table-column>
         <el-table-column type="expand">
           <template slot-scope="props">
@@ -28,51 +28,51 @@
           </template>
         </el-table-column>
         <el-table-column
-          prop="title"
-          label="书名（展开查看摘要）"
-          fit>
+                prop="title"
+                label="书名（展开查看摘要）"
+                fit>
         </el-table-column>
         <el-table-column
-          prop="category.name"
-          label="分类"
-          width="100">
+                prop="category.name"
+                label="分类"
+                width="100">
         </el-table-column>
         <el-table-column
-          prop="author"
-          label="作者"
-          fit>
+                prop="author"
+                label="作者"
+                fit>
         </el-table-column>
         <el-table-column
-          prop="date"
-          label="出版日期"
-          width="120">
+                prop="date"
+                label="出版日期"
+                width="120">
         </el-table-column>
         <el-table-column
-          prop="press"
-          label="出版社"
-          fit>
+                prop="press"
+                label="出版社"
+                fit>
         </el-table-column>
         <!--<el-table-column-->
-          <!--prop="abs"-->
-          <!--label="摘要"-->
-          <!--show-overflow-tooltip-->
-          <!--fit>-->
+        <!--prop="abs"-->
+        <!--label="摘要"-->
+        <!--show-overflow-tooltip-->
+        <!--fit>-->
         <!--</el-table-column>-->
         <el-table-column
-          fixed="right"
-          label="操作"
-          width="120">
+                fixed="right"
+                label="操作"
+                width="120">
           <template slot-scope="scope">
             <el-button
-              @click.native.prevent="editBook(scope.row)"
-              type="text"
-              size="small">
+                    @click.native.prevent="editBook(scope.row)"
+                    type="text"
+                    size="small">
               编辑
             </el-button>
             <el-button
-              @click.native.prevent="deleteBook(scope.row.id)"
-              type="text"
-              size="small">
+                    @click.native.prevent="deleteBook(scope.row.id)"
+                    type="text"
+                    size="small">
               移除
             </el-button>
           </template>
@@ -111,13 +111,13 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-            this.$axios
-              .post('/admin/content/books/delete', {id: id}).then(resp => {
-              if (resp && resp.status === 200) {
-                this.loadBooks()
-              }
-            })
-          }
+                  this.$axios
+                          .post('/admin/content/books/delete', {id: id}).then(resp => {
+                    if (resp && resp.data.code === 200) {
+                      this.loadBooks()
+                    }
+                  })
+                }
         ).catch(() => {
           this.$message({
             type: 'info',
@@ -147,8 +147,8 @@
       loadBooks () {
         var _this = this
         this.$axios.get('/books').then(resp => {
-          if (resp && resp.status === 200) {
-            _this.books = resp.data
+          if (resp && resp.data.code === 200) {
+            _this.books = resp.data.result
           }
         })
       }

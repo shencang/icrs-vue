@@ -12,13 +12,13 @@
     </el-link>
     <el-card style="margin: 18px 2%;width: 95%">
       <el-table
-        :data="articles"
-        stripe
-        style="width: 100%"
-        :max-height="tableHeight">
+              :data="articles"
+              stripe
+              style="width: 100%"
+              :max-height="tableHeight">
         <el-table-column
-          type="selection"
-          width="55">
+                type="selection"
+                width="55">
         </el-table-column>
         <el-table-column type="expand">
           <template slot-scope="props">
@@ -30,36 +30,36 @@
           </template>
         </el-table-column>
         <el-table-column
-          prop="articleTitle"
-          label="题目（展开查看摘要）"
-          fit>
+                prop="articleTitle"
+                label="题目（展开查看摘要）"
+                fit>
         </el-table-column>
         <el-table-column
-          prop="articleDate"
-          label="发布日期"
-          width="200">
+                prop="articleDate"
+                label="发布日期"
+                width="200">
         </el-table-column>
         <el-table-column
-          fixed="right"
-          label="操作"
-          width="180">
+                fixed="right"
+                label="操作"
+                width="180">
           <template slot-scope="scope">
             <el-button
-              @click.native.prevent="viewArticle(scope.row.id)"
-              type="text"
-              size="small">
+                    @click.native.prevent="viewArticle(scope.row.id)"
+                    type="text"
+                    size="small">
               查看
             </el-button>
             <el-button
-              @click.native.prevent="editArticle(scope.row)"
-              type="text"
-              size="small">
+                    @click.native.prevent="editArticle(scope.row)"
+                    type="text"
+                    size="small">
               编辑
             </el-button>
             <el-button
-              @click.native.prevent="deleteArticle(scope.row.id)"
-              type="text"
-              size="small">
+                    @click.native.prevent="deleteArticle(scope.row.id)"
+                    type="text"
+                    size="small">
               移除
             </el-button>
           </template>
@@ -67,12 +67,12 @@
       </el-table>
       <div style="margin: 20px 0 50px 0">
         <el-pagination
-          background
-          style="float:right;"
-          layout="total, prev, pager, next, jumper"
-          @current-change="handleCurrentChange"
-          :page-size="pageSize"
-          :total="total">
+                background
+                style="float:right;"
+                layout="total, prev, pager, next, jumper"
+                @current-change="handleCurrentChange"
+                :page-size="pageSize"
+                :total="total">
         </el-pagination>
       </div>
     </el-card>
@@ -86,7 +86,7 @@
       return {
         articles: [],
         pageSize: 10,
-        total: ''
+        total: 0
       }
     },
     mounted () {
@@ -101,40 +101,40 @@
       loadArticles () {
         var _this = this
         this.$axios.get('/article/' + this.pageSize + '/1').then(resp => {
-          if (resp && resp.status === 200) {
-            _this.articles = resp.data.content
-            _this.total = resp.data.totalElements
+          if (resp && resp.data.code === 200) {
+            _this.articles = resp.data.result.content
+            _this.total = resp.data.result.totalElements
           }
         })
       },
       handleCurrentChange (page) {
         var _this = this
         this.$axios.get('/article/' + this.pageSize + '/' + page).then(resp => {
-          if (resp && resp.status === 200) {
-            _this.articles = resp.data.content
-            _this.total = resp.data.totalElements
+          if (resp && resp.data.code === 200) {
+            _this.articles = resp.data.result.content
+            _this.total = resp.data.result.totalElements
           }
         })
       },
       viewArticle (id) {
         let articleUrl = this.$router.resolve(
-          {
-            path: '../../jotter/article',
-            query: {
-              id: id
-            }
-          }
+                {
+                  path: '../../jotter/article',
+                  query: {
+                    id: id
+                  }
+                }
         )
         window.open(articleUrl.href, '_blank')
       },
       editArticle (article) {
         this.$router.push(
-          {
-            name: 'Editor',
-            params: {
-              article: article
-            }
-          }
+                {
+                  name: 'Editor',
+                  params: {
+                    article: article
+                  }
+                }
         )
       },
       deleteArticle (id) {
@@ -143,13 +143,13 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-            this.$axios
-              .delete('/admin/content/article/' + id).then(resp => {
-              if (resp && resp.status === 200) {
-                this.loadArticles()
-              }
-            })
-          }
+                  this.$axios
+                          .delete('/admin/content/article/' + id).then(resp => {
+                    if (resp && resp.data.code === 200) {
+                      this.loadArticles()
+                    }
+                  })
+                }
         ).catch(() => {
           this.$message({
             type: 'info',

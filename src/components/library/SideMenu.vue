@@ -1,9 +1,9 @@
 <template>
   <el-menu
-    class="categories"
-    default-active="0"
-    @select="handleSelect"
-    active-text-color="red">
+          class="categories"
+          default-active="0"
+          @select="handleSelect"
+          active-text-color="red">
     <el-menu-item index="0">
       <i class="el-icon-menu"></i>
       <span slot="title">全部</span>
@@ -36,24 +36,21 @@
 </template>
 
 <script>
-    export default {
-      name: 'SideMenu',
-      data () {
-        return {
-          cid: ''
-        }
-      },
-      methods: {
-        // handleOpen (key, keyPath) {
-        //   console.log(key, keyPath)
-        // },
-        // eslint-disable-next-line no-unused-vars
-        handleSelect (key, keyPath) {
-          this.cid = key
-          this.$emit('indexSelect')
-        }
+  export default {
+    name: 'SideMenu',
+    data () {
+      return {
+        cid: ''
+      }
+    },
+    methods: {
+      handleSelect (key, keyPath) {
+        console.log(keyPath)
+        this.cid = key
+        this.$emit('indexSelect')
       }
     }
+  }
 </script>
 
 <style scoped>

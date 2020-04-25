@@ -9,40 +9,38 @@
     </el-row>
     <el-card style="margin: 18px 2%;width: 95%">
       <el-table
-        stripe
-        style="width: 100%">
+              stripe
+              style="width: 100%">
         <el-table-column
-          type="selection"
-          width="55">
+                type="selection"
+                width="55">
         </el-table-column>
         <el-table-column
-          label="广告名称"
-          fit>
+                label="广告名称"
+                fit>
         </el-table-column>
         <el-table-column
-          label="链接地址"
-          fit>
+                label="链接地址"
+                fit>
         </el-table-column>
         <el-table-column
-          label="图片地址"
-          fit>
+                label="图片地址"
+                fit>
         </el-table-column>
         <el-table-column
-          fixed="right"
-          label="操作"
-          width="120">
-
-          <template >
-            <!--    <template slot-scope="scope">-->
-            <el-button slot="scope"
-              type="text"
-              size="small">
+                fixed="right"
+                label="操作"
+                width="120">
+<!--          这里修改了slot-scope -->
+          <template slot-scope="">
+            <el-button
+                    type="text"
+                    size="small">
               编辑
             </el-button>
             <el-button
-
-              type="text"
-              size="small">
+                    type="text"
+                    size="small">
               移除
             </el-button>
           </template>
@@ -57,12 +55,11 @@
 </template>
 
 <script>
-    export default {
-        name: 'BannerManagement'
-    }
+  export default {
+    name: 'BannerManagement'
+  }
 </script>
 
 <style scoped>
-
 
 </style>

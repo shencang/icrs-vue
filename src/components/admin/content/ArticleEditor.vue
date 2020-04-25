@@ -10,30 +10,30 @@
     </el-row>
     <el-row>
       <el-input
-        v-model="article.articleTitle"
-        style="margin: 10px 0px;font-size: 18px;"
-        placeholder="请输入标题"></el-input>
+              v-model="article.articleTitle"
+              style="margin: 10px 0px;font-size: 18px;"
+              placeholder="请输入标题"></el-input>
     </el-row>
     <el-row style="height: calc(100vh - 140px);">
       <mavon-editor
-        v-model="article.articleContentMd"
-        style="height: 100%;"
-        ref=md
-        @save="saveArticles"
-        fontSize="16px">
+              v-model="article.articleContentMd"
+              style="height: 100%;"
+              ref=md
+              @save="saveArticles"
+              fontSize="16px">
         <button type="button" class="op-icon el-icon-document" :title="'摘要/封面'" slot="left-toolbar-after"
                 @click="dialogVisible = true"></button>
       </mavon-editor>
       <el-dialog
-        :visible.sync="dialogVisible"
-        width="30%">
+              :visible.sync="dialogVisible"
+              width="30%">
         <el-divider content-position="left">摘要</el-divider>
         <el-input
-          type="textarea"
-          v-model="article.articleAbstract"
-          rows="6"
-          maxlength="255"
-          show-word-limit></el-input>
+                type="textarea"
+                v-model="article.articleAbstract"
+                rows="6"
+                maxlength="255"
+                show-word-limit></el-input>
         <el-divider content-position="left">封面</el-divider>
         <div style="margin-top: 20px">
           <el-input v-model="article.articleCover" autocomplete="off" placeholder="图片 URL"></el-input>
@@ -73,24 +73,24 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-            this.$axios
-              .post('/admin/content/article', {
-                id: this.article.id,
-                articleTitle: this.article.articleTitle,
-                articleContentMd: value,
-                articleContentHtml: render,
-                articleAbstract: this.article.articleAbstract,
-                articleCover: this.article.articleCover,
-                articleDate: this.article.articleDate
-              }).then(resp => {
-              if (resp && resp.status === 200) {
-                this.$message({
-                  type: 'info',
-                  message: '已保存成功'
-                })
-              }
-            })
-          }
+                  this.$axios
+                          .post('/admin/content/article', {
+                            id: this.article.id,
+                            articleTitle: this.article.articleTitle,
+                            articleContentMd: value,
+                            articleContentHtml: render,
+                            articleAbstract: this.article.articleAbstract,
+                            articleCover: this.article.articleCover,
+                            articleDate: this.article.articleDate
+                          }).then(resp => {
+                    if (resp && resp.data.code === 200) {
+                      this.$message({
+                        type: 'info',
+                        message: '已保存成功'
+                      })
+                    }
+                  })
+                }
         ).catch(() => {
           this.$message({
             type: 'info',

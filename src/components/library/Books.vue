@@ -29,10 +29,10 @@
     </el-row>
     <el-row>
       <el-pagination
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-size="pagesize"
-        :total="books.length">
+              @current-change="handleCurrentChange"
+              :current-page="currentPage"
+              :page-size="pagesize"
+              :total="books.length">
       </el-pagination>
     </el-row>
   </div>
@@ -59,8 +59,8 @@
       loadBooks () {
         var _this = this
         this.$axios.get('/books').then(resp => {
-          if (resp && resp.status === 200) {
-            _this.books = resp.data
+          if (resp && resp.data.code === 200) {
+            _this.books = resp.data.result
           }
         })
       },
@@ -70,10 +70,10 @@
       searchResult () {
         var _this = this
         this.$axios
-          .get('/search?keywords=' + this.$refs.searchBar.keywords, {
-          }).then(resp => {
-          if (resp && resp.status === 200) {
-            _this.books = resp.data
+                .get('/search?keywords=' + this.$refs.searchBar.keywords, {
+                }).then(resp => {
+          if (resp && resp.data.code === 200) {
+            _this.books = resp.data.result
           }
         })
       }

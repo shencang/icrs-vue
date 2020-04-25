@@ -2,10 +2,10 @@
   <div style="text-align: left">
     <el-button class="add-button" type="success" @click="dialogFormVisible = true">添加角色</el-button>
     <el-dialog
-      title="添加角色"
-      :visible.sync="dialogFormVisible"
-      @close="clear"
-      width="25%">
+            title="添加角色"
+            :visible.sync="dialogFormVisible"
+            @close="clear"
+            width="25%">
       <el-form :model="roleForm" :rules="rules" label-position="left"
                label-width="0px" v-loading="loading">
         <el-form-item prop="name">
@@ -53,27 +53,27 @@
       },
       createRole () {
         this.$axios
-          .post('/admin/role', {
-            name: this.roleForm.name,
-            nameZh: this.roleForm.nameZh
-          })
-          .then(resp => {
-            if (resp.data.code === 200) {
-              this.$alert(resp.data.data, '提示', {
-                confirmButtonText: '确定'
-              })
-              this.clear()
-              this.$emit('onSubmit')
-            } else {
-              this.$alert(resp.data.message, '提示', {
-                confirmButtonText: '确定'
-              })
-            }
-          })
-          .catch(failResponse => {failResponse.errors;})
-        this.dialogFormVisible = false;
-
-
+                .post('/admin/role', {
+                  name: this.roleForm.name,
+                  nameZh: this.roleForm.nameZh
+                })
+                .then(resp => {
+                  if (resp.data.code === 200) {
+                    this.$alert(resp.data.result, '提示', {
+                      confirmButtonText: '确定'
+                    })
+                    this.clear()
+                    this.$emit('onSubmit')
+                  } else {
+                    this.$alert(resp.data.message, '提示', {
+                      confirmButtonText: '确定'
+                    })
+                  }
+                })
+                .catch(failResponse => {
+                  failResponse.errors
+                })
+        this.dialogFormVisible = false
       }
     }
   }
