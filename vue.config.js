@@ -1,4 +1,7 @@
 module.exports = {
+    //选项
+    //放置静态资源的目录
+    assetsDir:"static",
 
     configureWebpack:  {
         resolve:{

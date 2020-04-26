@@ -7,7 +7,7 @@
                 <carousel></carousel>
                 <quick-nav style="float: right;margin-top: -450px;margin-right: 480px"></quick-nav>
             </div>
-            <update-card id="update-card"></update-card>
+            <classroom-situation id="update-card"></classroom-situation>
             <slogan id="slogan"></slogan>
             <about id="about"></about>
         </div>
@@ -18,12 +18,12 @@
     import Carousel from './Carousel'
     import QuickNav from './QuickNav'
     import Slogan from './Slogan'
-    import About from '@/components/common/About'
-    import UpdateCard from './UpdateCard'
+    import About from '@/components/home/About'
+    import ClassroomSituation from './ClassroomSituation'
     import SideMenu from './SideMenu'
     export default {
         name: 'AppIndex',
-        components: {Carousel, QuickNav, Slogan, About, UpdateCard, SideMenu}
+        components: {Carousel, QuickNav, Slogan, About, ClassroomSituation, SideMenu}
     }
 </script>
 

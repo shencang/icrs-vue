@@ -1,17 +1,28 @@
 <template>
     <div class="quick-nav">
-        <img src="../../assets/img/icon/icon2.png" alt="" class="monster">
+        <h1 class="spark">智能自习室系统</h1>
+        <span class="name" >username</span>
+        <span class="title">，欢迎访问教室预约管理系统</span>
+<!--        <img src="../../assets/img/face/idea.jpg" alt="" class="monster">-->
         <a href="https://github.com/Antabot/White-Jotter/blob/master/README.md" target="_blank">
-            <img src="../../assets/img/icon/icon5.png" alt="" class="readme">
+<!--            <img src="../../assets/img/icon/icon5.png" alt="" class="readme">-->
         </a>
-        <img src="../../assets/img/icon/icon7.png" alt="" class="spark">
-        <img src="../../assets/img/icon/logo.png" alt="" class="logo">
+<!--        <img src="../../assets/img/icon/icon7.png" alt="" class="spark">-->
+<!--        <img src="../../assets/img/icon/logo.png" alt="" class="logo">-->
+
+
+
     </div>
 </template>
 
 <script>
     export default {
-        name: 'QuickNav'
+        name: 'QuickNav',
+        data () {
+            return {
+        }},
+        methods: {
+        }
     }
 </script>
 
@@ -21,7 +32,6 @@
         height: 318px;
         background-color: transparent;
     }
-
     .monster {
         width: 280px;
         height: 260px;
@@ -40,10 +50,27 @@
     }
 
     .spark {
+        font-size: 55px;
         position: absolute;
-        margin-left: 50%;
-        top: 100px;
-        left: 20px;
+        left: auto;
+        /*margin-left: 25%;*/
+        top: 30px;
+        /*left: 1px;*/
+        font-weight: bold;
+    }
+    .title{
+        position: absolute;
+        padding-top: 40px;
+        /*margin-left: -10%;*/
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .name{
+        position: absolute;
+        padding-top: 40px;
+        /*margin-left: -15%;*/
+        font-size: 20px;
+        font-weight: bold;
     }
 
     .logo {
