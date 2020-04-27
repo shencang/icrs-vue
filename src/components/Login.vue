@@ -49,6 +49,7 @@
                             var data = resp.data.result
                             _this.$store.commit('login', data)
                             var path = _this.$route.query.redirect
+                            localStorage.setItem("DIS_username",this.loginForm.username)
                             _this.$router.replace({path: path === '/' || path === undefined ? '/admin/dashboard' : path})
                         } else {
                             this.$alert(resp.data.message, '提示', {

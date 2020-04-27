@@ -17,23 +17,57 @@
           </el-card>
           <el-card>
             <h4>可用教室分布情况</h4>
-            <el-table :data="tableClassroom7day" ref="multipleTable">
+            <el-table :data="classrooms" ref="multipleTable">
               <el-table-column type="selection" width="auto" ></el-table-column>
               <el-table-column type="index" label="序号" width="auto"></el-table-column>
-              <el-table-column prop="meetingName" label="会议名称" width="auto"></el-table-column>
-              <el-table-column prop="classroom" label="教室" width="auto"></el-table-column>
-              <el-table-column prop="beginTime" label="起始时间" width="auto"></el-table-column>
-              <el-table-column prop="endTime" label="结束时间" width="auto"></el-table-column>
-              <el-table-column type="operation" label="操作" width="auto"></el-table-column>
+              <el-table-column prop="roomName" label="教室名称" width="auto"></el-table-column>
+              <el-table-column prop="capacity" label="教室容量" width="auto"></el-table-column>
+              <el-table-column prop="position" label="教室位置" width="auto"></el-table-column>
+              <el-table-column prop="description" label="描述与备注" width="auto"></el-table-column>
+              <el-table-column type="operation" label="操作" width="auto">
+                  <el-button-group>
+                      <el-button>查看</el-button>
+                      <el-button>预约</el-button>
+                  </el-button-group>
+              </el-table-column>
           </el-table>
-              <el-button>立刻查看</el-button>
           </el-card>
         <el-card>
           <h4>当前我已经参与的预约</h4>
-          <p>x</p>
+            <el-table :data="classrooms" ref="multipleTable">
+                <el-table-column type="selection" width="auto" ></el-table-column>
+                <el-table-column type="index" label="序号" width="auto"></el-table-column>
+                <el-table-column prop="roomName" label="教室名称" width="auto"></el-table-column>
+                <el-table-column prop="capacity" label="教室容量" width="auto"></el-table-column>
+                <el-table-column prop="position" label="教室位置" width="auto"></el-table-column>
+                <el-table-column prop="description" label="描述与备注" width="auto"></el-table-column>
+                <el-table-column type="operation" label="操作" width="auto">
+                    <el-button-group>
+                        <el-button>查看</el-button>
+                        <el-button>预约</el-button>
+                    </el-button-group>
+                </el-table-column>
+            </el-table>
         </el-card>
           <el-card>
-            <h3>立刻预约教室</h3>
+            <h3>相关操作</h3>
+              <p>
+                  <el-row >
+                      <el-col :span="6">
+                          <el-button>查看教室</el-button>
+                      </el-col>
+                      <el-col :span="6">
+                          <el-button>教室预约</el-button>
+                      </el-col>
+                      <el-col :span="6">
+                          <el-button>其它操作</el-button>
+                      </el-col>
+                      <el-col :span="6">
+                          <el-button>友情链接</el-button>
+                      </el-col>
+                  </el-row>
+
+              </p>
           </el-card>
           </el-timeline-item>
       </el-timeline>
@@ -50,56 +84,8 @@
               roomCount:0,
               roomUsedCount:0,
               roomUnusedCount:0,
-              tableClassroom7day:[{
-                  meetingName:'text',
-                  classroom:'testRoom',
-                  beginTime:'2020-3-15',
-                  endTime:'2020-3-16',
+              classrooms:[],
 
-
-              },{
-                  meetingName:'text',
-                  classroom:'testRoom',
-                  beginTime:'2020-3-15',
-                  endTime:'2020-3-16',
-
-
-              },{
-                  meetingName:'text',
-                  classroom:'testRoom',
-                  beginTime:'2020-3-15',
-                  endTime:'2020-3-16',
-
-
-              },{
-                  meetingName:'text',
-                  classroom:'testRoom',
-                  beginTime:'2020-3-15',
-                  endTime:'2020-3-16',
-
-
-              },{
-                  meetingName:'text',
-                  classroom:'testRoom',
-                  beginTime:'2020-3-15',
-                  endTime:'2020-3-16',
-
-
-              },{
-                  meetingName:'text',
-                  classroom:'testRoom',
-                  beginTime:'2020-3-15',
-                  endTime:'2020-3-16',
-
-
-              },{
-                  meetingName:'text',
-                  classroom:'testRoom',
-                  beginTime:'2020-3-15',
-                  endTime:'2020-3-16',
-
-
-              }]
           }
 
       },
@@ -107,6 +93,7 @@
           this.countByAllRoom();
           this.countByUsedRoom();
           this.countByUnusedRoom();
+          this.usableRooms()
       },
 
       methods: {
@@ -136,6 +123,16 @@
                       _this.roomUnusedCount = resp.data.result
                   }
               })
+          },
+          usableRooms(){
+            const _this = this;
+              const url ='rooms/usable-rooms'
+            this.$axios.get(url).then(resp=>{
+                if (resp&&resp.data.code===200){
+                    _this.classrooms= resp.data.result;
+                }
+            })
+
           }
       }
 

@@ -11,7 +11,8 @@
             <el-menu-item v-for="(item,i) in navList" :key="i" :index="item.name">
                 {{ item.navItem }}
             </el-menu-item>
-<!--            <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">智慧教室系统</span>-->
+            <span style="position: absolute;padding-top: 20px;right: 35%;font-size: 15px;font-weight: bold"
+            >{{username}}，欢迎访问系统</span>
             <el-input
                     placeholder="快速搜索..."
                     prefix-icon="el-icon-search"
@@ -37,6 +38,7 @@
                     {name: '/classroom', navItem: '教室查看与预定'},
                     {name: '/admin/dashboard', navItem: '个人中心'},
                 ],
+                username:'',
                 keyword: '',
                 path: ''
             }
@@ -48,6 +50,7 @@
             } else {
                 this.path = this.$route.path
             }
+            this.getNameByUsername()
         },
         computed: {
             hoverBackground() {
@@ -66,7 +69,19 @@
             //         }
             //     })
             // }
-
+            getNameByUsername(){
+                const _this =this
+                this.$axios.post('info/name',{
+                    username:localStorage.getItem("DIS_username")
+                })
+                    .then(resp=>{
+                        if (resp.data.code ===200){
+                            _this.username=resp.data.result
+                        }
+                    }).catch(failResponse =>{
+                    failResponse.errors
+                })
+            }
         }
     }
 </script>

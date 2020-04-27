@@ -1,8 +1,5 @@
 <template>
     <div class="quick-nav">
-        <h1 class="spark">智能自习室系统</h1>
-        <span class="name" >username</span>
-        <span class="title">，欢迎访问教室预约管理系统</span>
 <!--        <img src="../../assets/img/face/idea.jpg" alt="" class="monster">-->
         <a href="https://github.com/Antabot/White-Jotter/blob/master/README.md" target="_blank">
 <!--            <img src="../../assets/img/icon/icon5.png" alt="" class="readme">-->
@@ -20,7 +17,10 @@
         name: 'QuickNav',
         data () {
             return {
+                username:''
         }},
+        mounted: function () {
+        },
         methods: {
         }
     }
@@ -28,8 +28,8 @@
 
 <style scoped>
     .quick-nav {
-        width: 303px;
-        height: 318px;
+        width: auto;
+        height: auto;
         background-color: transparent;
     }
     .monster {
@@ -49,29 +49,29 @@
         left: 230px;
     }
 
-    .spark {
-        font-size: 55px;
-        position: absolute;
-        left: auto;
-        /*margin-left: 25%;*/
-        top: 30px;
-        /*left: 1px;*/
-        font-weight: bold;
-    }
-    .title{
-        position: absolute;
-        padding-top: 40px;
-        /*margin-left: -10%;*/
-        font-size: 20px;
-        font-weight: bold;
-    }
-    .name{
-        position: absolute;
-        padding-top: 40px;
-        /*margin-left: -15%;*/
-        font-size: 20px;
-        font-weight: bold;
-    }
+    /*.spark {*/
+    /*    font-size: 55px;*/
+    /*    position: absolute;*/
+    /*    left: auto;*/
+    /*    !*margin-left: 25%;*!*/
+    /*    top: 30px;*/
+    /*    !*left: 1px;*!*/
+    /*    font-weight: bold;*/
+    /*}*/
+    /*.title{*/
+    /*    position: absolute;*/
+    /*    padding-top: 40px;*/
+    /*    !*margin-left: -10%;*!*/
+    /*    font-size: 20px;*/
+    /*    font-weight: bold;*/
+    /*}*/
+    /*.name{*/
+    /*    position: absolute;*/
+    /*    padding-top: 40px;*/
+    /*    !*margin-left: -15%;*!*/
+    /*    font-size: 20px;*/
+    /*    font-weight: bold;*/
+    /*}*/
 
     .logo {
         width: 280px;

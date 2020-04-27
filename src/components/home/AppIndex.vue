@@ -1,5 +1,6 @@
 <template>
-    <div style="margin-top: 40px">
+    <div style="margin-top: 10px">
+            <h1 class="spark" >智能自习室系统</h1>
         <side-menu id="side-menu"></side-menu>
         <div class="home">
             <div id="header-div">
@@ -32,7 +33,8 @@
         width: 990px;
         margin-left: auto;
         margin-right: auto;
-        margin-top: -20px;
+        /*margin-top: -20px;*/
+        margin-top: -150px
     }
 
     #header-div {
