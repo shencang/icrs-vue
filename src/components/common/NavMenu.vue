@@ -72,7 +72,7 @@
             getNameByUsername(){
                 const _this =this
                 this.$axios.post('info/name',{
-                    username:localStorage.getItem("DIS_username")
+                    username:sessionStorage.getItem("DIS_username")
                 })
                     .then(resp=>{
                         if (resp.data.code ===200){

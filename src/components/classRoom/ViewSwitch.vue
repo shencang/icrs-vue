@@ -1,7 +1,7 @@
 <template>
   <el-switch
-    v-model="value"
-    active-text="列表视图">
+          v-model="value"
+          active-text="列表视图">
   </el-switch>
 </template>
 
