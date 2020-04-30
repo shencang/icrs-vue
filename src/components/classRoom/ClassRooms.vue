@@ -17,11 +17,6 @@
                          bodyStyle="padding:10px" shadow="hover">
                     <div class="cover cover-blur" @click="bookRoom(item)">
 <!--                        <el-image :src="imgSrc" fit="fill" alt="封面" class="classroomsImg"></el-image>-->
-                        <br>
-                        <p v-if="item.status===1">状态：已被预约</p>
-                        <p v-if="item.status===0">状态：未被预约</p>
-                        <p v-if="item.status===-1">状态：不可用</p>
-                        <br>
                         <span>教室名称:{{item.roomName}}</span>
                         <br>
                         <span>教室容量:{{item.capacity}}</span>
@@ -62,7 +57,7 @@
             return {
                 rooms: [],
                 currentPage: 1,
-                pagesize: 17,
+                pagesize: 12,
             }
         },
         mounted: function () {

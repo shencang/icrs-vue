@@ -32,11 +32,12 @@
             return {
                 navList: [
                     {name: '/index', navItem: '首页'},
-                    {name: '/jotter', navItem: '笔记本'},
-                    {name: '/library', navItem: '图书馆'},
                     {name: '/notice', navItem: '最近通知'},
                     {name: '/classroom', navItem: '教室查看与预定'},
-                    {name: '/admin/dashboard', navItem: '个人中心'},
+                    {name:'/personal',navItem: "个人中心"},
+                    {name: '/jotter', navItem: '笔记本'},
+                    {name: '/library', navItem: '图书馆'},
+                    {name: '/admin/dashboard', navItem: '管理系统'},
                 ],
                 username:'',
                 keyword: '',
@@ -59,16 +60,6 @@
         },
 
         methods: {
-            // logout() {
-            //     const _this = this;
-            //     this.$axios.get('/logout').then(resp => {
-            //         if (resp.data.code === 200) {
-            //             // 前后端状态保持一致
-            //             _this.$store.commit('logout');
-            //             _this.$router.replace('/login')
-            //         }
-            //     })
-            // }
             getNameByUsername(){
                 const _this =this
                 this.$axios.post('info/name',{
