@@ -132,8 +132,10 @@
                 })
             },
             submitForm(formName) {
-                console.log(this.ruleForm.endTime)
-                console.log(this.ruleForm.startTime)
+                // console.log(this.ruleForm.endTime)
+                // console.log(this.ruleForm.startTime)
+                // console.log(moment(this.ruleForm.endTime).format("YYYY-MM-DD HH:mm:ss"))
+                // console.log(moment(this.ruleForm.startTime).format("YYYY-MM-DD HH:mm:ss"))
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.$axios.post('/meeting/save',{
@@ -143,8 +145,8 @@
                             reservationTime:moment().format("YYYY-MM-DD HH:mm:ss"),
                             empName: sessionStorage.getItem("DIS_username"),
                             roomName:this.form.roomName,
-                            startTime:moment(this.ruleForm.endTime).format("YYYY-MM-DD HH:mm:ss"),
-                            endTime:moment(this.ruleForm.startTime).format("YYYY-MM-DD HH:mm:ss"),
+                            startTime:moment(this.ruleForm.startTime).format("YYYY-MM-DD HH:mm:ss"),
+                            endTime:moment(this.ruleForm.endTime).format("YYYY-MM-DD HH:mm:ss"),
                             description:this.ruleForm.description,
                             reservationIsTid:8,
                             status:1

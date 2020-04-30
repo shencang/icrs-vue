@@ -27,7 +27,6 @@
                         <div class="title">
                             <a href="">{{item.roomName}}</a>
                         </div>
-                        <i class="el-icon-delete" @click="deleteRoom(item.roomId)"></i>
                     </div>
                     <div class="author">{{item.description}}</div>
                 </el-card>

@@ -1,9 +1,9 @@
 <template>
-    <el-card  class="container">
+    <el-card class="container">
         <el-table
                 :data="table"
                 style="width: 100%"
-                :default-sort = "{prop: 'startTime', order: 'descending'}"
+                :default-sort="{prop: 'startTime', order: 'descending'}"
         >
             <el-table-column
                     label="开始时间"
@@ -33,9 +33,9 @@
                     prop="roomName"
                     label="会议室">
                 <template slot-scope="scope">
-                        <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{ scope.row.roomName }}</el-tag>
-                        </div>
+                    <div slot="reference" class="name-wrapper">
+                        <el-tag size="medium">{{ scope.row.roomName }}</el-tag>
+                    </div>
                 </template>
             </el-table-column>
             <el-table-column
@@ -47,18 +47,17 @@
                     label="描述">
             </el-table-column>
             <el-table-column
-                    prop="reservationTime"
                     label="预定时间">
-            </el-table-column>
-            <el-table-column
-                    prop="surplusTime"
-                    label="测试">
+                <template slot-scope="scope">
+                    <i class="el-icon-time"></i>
+                    <span style="margin-left: 10px">{{ scope.row.reservationTime }}</span>
+                </template>
             </el-table-column>
             <el-table-column
                     label="剩余时间">
                 <template slot-scope="scope">
                     <div slot="reference" class="name-wrapper">
-                        <el-tag size="medium">{{ scope.row.reservationTime }}</el-tag>
+                        <el-tag size="medium">{{surplusTime(scope.row.startTime) }}</el-tag>
                     </div>
                 </template>
             </el-table-column>
@@ -67,44 +66,39 @@
 </template>
 <script>
 
-import moment from "moment";
-
-export default {
-    name: 'Process',
-    props:{
-      list:Array
-    },
-    data() {
-      return {
-        reverse: true,
-          table:[{
-              meetingName:'',
-              roomId:'',
-              numberOfParticipants:'',
-              reservationTime:'',
-              empName:'',
-              roomName:'',
-              startTime:'',
-              endTime:'',
-              description:'',
-              reservationIsTid:'',
-              status:'',
-              surplusTime:''
-          }],
-      };
-    },
-    mounted(){
-        this.loadMeetingListOfUser()
-    },
-    methods: {
-        surplusTimeQ(startTime){
-            this.surplusTime = moment().format("YYYY-MM-DD HH:mm:ss")
-            const times = this.surplusTime.diff(startTime);
-            console.log(times)
-            return times;
+    import moment from "moment";
+    export default {
+        name: 'Process',
+        props: {
+            list: Array
         },
+        data() {
+            return {
+                reverse: true,
+                table: [{
+                    meetingName: '',
+                    roomId: '',
+                    numberOfParticipants: '',
+                    reservationTime: '',
+                    empName: '',
+                    roomName: '',
+                    startTime: '',
+                    endTime: '',
+                    description: '',
+                    reservationIsTid: '',
+                    status: '',
+                }],
+            };
+        },
+        mounted() {
+            this.loadMeetingListOfUser()
+        },
+        methods: {
+            surplusTime(startTime) {
+                return  moment(startTime,"YYYY-MM-DD  HH:mm:ss").fromNow();
+            },
 
-        loadMeetingListOfUser(){
+            loadMeetingListOfUser() {
                 console.log(sessionStorage.getItem("DIS_username"))
                 const _this = this
                 this.$axios.post('meeting/get/user_used', {
@@ -117,22 +111,26 @@ export default {
                     }
                 )
 
-        }
-    },
-}
+            }
+        },
+    }
 </script>
 <style lang="stylus" scoped>
     @import '../../styles/varibles.styl'
     .container
         padding 0 20px
+
         .list
             padding 0 100px
             textStyle()
+
             .title
                 color $bgColor
                 font-size 15px
+
             .el-timeline
                 margin-top 10px
+
     .el-table .warning-row {
         background: oldlace;
     }
