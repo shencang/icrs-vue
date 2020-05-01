@@ -4,7 +4,9 @@ import router from './router'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import 'echarts/theme/macarons.js'
+import echarts from 'echarts'
 import store from './store'
+
 
 import {
   Pagination,
@@ -170,7 +172,7 @@ Vue.prototype.$confirm = MessageBox.confirm
 Vue.prototype.$prompt = MessageBox.prompt
 Vue.prototype.$notify = Notification
 Vue.prototype.$message = Message
-
+Vue.prototype.$echarts = echarts
 var axios = require('axios')
 axios.defaults.baseURL = 'http://localhost:8443/api'
 // 使请求带上凭证信息

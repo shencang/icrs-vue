@@ -4,7 +4,7 @@
             <search-bar @onSearch="searchResult" ref="searchBar"></search-bar>
             <view-switch class="switch"></view-switch>
             <el-tooltip effect="dark" placement="right"
-                        v-for="item in rooms.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+                        v-for="item in rooms.slice((currentPage-1)*pageSize,currentPage*pageSize)"
                         :key="item.roomId">
                 <p slot="content" style="font-size: 14px;margin-bottom: 6px;">{{item.roomName}}</p>
                 <p slot="content" style="font-size: 13px;margin-bottom: 6px">
@@ -37,7 +37,7 @@
             <el-pagination
                     @current-change="handleCurrentChange"
                     :current-page="currentPage"
-                    :page-size="pagesize"
+                    :page-size="pageSize"
                     :total="rooms.length">
             </el-pagination>
         </el-row>
@@ -56,7 +56,7 @@
             return {
                 rooms: [],
                 currentPage: 1,
-                pagesize: 12,
+                pageSize: 12,
             }
         },
         mounted: function () {
@@ -67,7 +67,7 @@
                 const _this = this;
                 this.$axios.get('/rooms').then(resp => {
                     if (resp && resp.status === 200) {
-                        _this.rooms = resp.data
+                        _this.rooms = resp.data.result
                     }
                 })
             },
