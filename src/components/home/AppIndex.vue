@@ -52,9 +52,29 @@
         methods: {
             checkUserMeetingTimeout(){
                 //todo 用于进入系统时检查用户的会议是否过期
+                const _this =this;
+                this.$axios.get('/checkMeetTimeout')
+                    .then(resp=>{
+                        if (resp && resp.data.code ===200 ){
+                            _this.$message({
+                                message:'成功更新系统库状态',
+                                type:  'success'
+                            });
+                        }
+                    })
             },
             checkUserMeetingBegin(){
-                //todo 用于进入系统时检查会议是否开始
+                // 用于进入系统时检查会议是否开始
+                const _this =this;
+                this.$axios.get('/checkMeetBegin')
+                    .then(resp=>{
+                        if (resp && resp.data.code ===200 ){
+                            _this.$message({
+                                message:'成功更新运行状态',
+                                type:  'success'
+                            });
+                        }
+                    })
             },
             getHomeInfo() {
                 // axios.get('static/mock/room.json')

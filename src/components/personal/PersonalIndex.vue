@@ -32,39 +32,10 @@
                 jobId:''
             };},
         methods:{
-            // getCenterInfo(){
-            //     // this.jobId = this.$store.state.job_id
-            //     // var params = new URLSearchParams();
-            //     // params.append('jobId',this.jobId);
-            //     // axios.get('static/mock/center.json')
-            //     axios.post('/privateCenter')
-            //         .then(this.getCenterInfoSucc)
-            // },
-            // getCenterInfoSucc(res){
-            //     res = res.data
-            //     if(res.code == 200)
-            //     {
-            //         const data= res.data
-            //         this.list = data.list
-            //     }
-            // },
-            // getDeleteInfo(){
-            //     //  axios.get('static/mock/delete.json')
-            //     axios.post('/deleteReservation')
-            //         .then(this.getDeleteInfoSucc)
-            // },
-            // getDeleteInfoSucc(res){
-            //     res = res.data
-            //     if(res.code == 200)
-            //     {
-            //         const data= res.data
-            //         this.cancelList = data.tableData
-            //     }
-            // }
+
         },
         mounted(){
-            // this.getCenterInfo()
-            // this.getDeleteInfo()
+
         },
     }
 

@@ -192,23 +192,6 @@
                     <span style="margin-left: 10px">{{ scope.row.reservationTime }}</span>
                 </template>
             </el-table-column>
-            <el-table-column
-                    label="剩余时间">
-                <template slot-scope="scope">
-                    <div slot="reference" class="name-wrapper">
-                        <el-tag size="medium">{{surplusTime(scope.row.startTime) }}</el-tag>
-                    </div>
-                </template>
-            </el-table-column>
-            <el-table-column
-                    align="right">
-                <template slot-scope="scope">
-                    <el-button
-                            size="mini"
-                            type="danger"
-                            @click="handleDelete(scope.$index, scope.row)">取消预订</el-button>
-                </template>
-            </el-table-column>
         </el-table>
     </el-card>
 

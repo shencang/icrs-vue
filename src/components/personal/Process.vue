@@ -1,5 +1,69 @@
 <template>
     <el-card class="container">
+        <h1 align="left">近一周内有效预定活动：</h1>
+        <el-table
+                :data="table"
+                style="width: 100%"
+                :default-sort="{prop: 'startTime', order: 'descending'}"
+        >
+            <el-table-column
+                    label="开始时间"
+                    sortable
+                    width="auto">
+                <template slot-scope="scope">
+                    <i class="el-icon-time"></i>
+                    <span style="margin-left: 10px">{{ scope.row.startTime }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="结束时间"
+                    sortable
+                    width="auto">
+                <template slot-scope="scope">
+                    <i class="el-icon-time"></i>
+                    <span style="margin-left: 10px">{{ scope.row.endTime }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="meetingName"
+                    label="会议名称"
+                    sortable
+                    width="auto">
+            </el-table-column>
+            <el-table-column
+                    prop="roomName"
+                    label="会议室">
+                <template slot-scope="scope">
+                    <div slot="reference" class="name-wrapper">
+                        <el-tag size="medium">{{ scope.row.roomName }}</el-tag>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="numberOfParticipants"
+                    label="活动人数">
+            </el-table-column>
+            <el-table-column
+                    prop="description"
+                    label="描述">
+            </el-table-column>
+            <el-table-column
+                    label="预定时间">
+                <template slot-scope="scope">
+                    <i class="el-icon-time"></i>
+                    <span style="margin-left: 10px">{{ scope.row.reservationTime }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="剩余时间">
+                <template slot-scope="scope">
+                    <div slot="reference" class="name-wrapper">
+                        <el-tag size="medium">{{surplusTime(scope.row.startTime) }}</el-tag>
+                    </div>
+                </template>
+            </el-table-column>
+        </el-table>
+        <h1 align="left">所有有效预定活动：</h1>
         <el-table
                 :data="table"
                 style="width: 100%"
