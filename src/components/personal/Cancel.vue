@@ -273,7 +273,7 @@
                             .post('/meeting/cancel', {
                                 meetingId: row.meetingId,
                                 canceledTime:moment().format("YYYY-MM-DD HH:mm:ss"),
-                                canceledReason:value
+                                canceledReason:value.toString(),
 
                             }).then(resp => {
                             if (resp && resp.status === 200) {

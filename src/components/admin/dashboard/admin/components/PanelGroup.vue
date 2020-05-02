@@ -7,7 +7,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            New Visits
+            系统用户
           </div>
           <count-to :start-val="0" :end-val="3734" :duration="2600" class="card-panel-num" />
         </div>
@@ -20,7 +20,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Messages
+            登记活动
           </div>
           <count-to :start-val="0" :end-val="676" :duration="3000" class="card-panel-num" />
         </div>
@@ -33,7 +33,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Stars
+            可用会议
           </div>
           <count-to :start-val="0" :end-val="292" :duration="3200" class="card-panel-num" />
         </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Donations
+            登记教室
           </div>
           <count-to :start-val="0" :end-val="7690" :duration="3600" class="card-panel-num" />
         </div>

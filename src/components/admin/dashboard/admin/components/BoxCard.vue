@@ -1,18 +1,16 @@
 <template>
   <el-card class="box-card-component" style="margin-left:8px;">
-    <div slot="header" class="box-card-header">
-      <img src="https://wpimg.wallstcn.com/e7d23d71-cf19-4b90-a1cc-f56af8c0903d.png">
-    </div>
+    <h3>系统构成</h3>
     <div style="position:relative;">
       <!--<pan-thumb :image="avatar" class="panThumb" />-->
       <!--<mallki class-name="mallki-text" text="vue-element-admin" />-->
       <div style="padding-top:35px;" class="progress-item">
         <span>Vue</span>
-        <el-progress :percentage="70" />
+        <el-progress :percentage="77" />
       </div>
       <div class="progress-item">
         <span>JavaScript</span>
-        <el-progress :percentage="18" />
+        <el-progress :percentage="11" />
       </div>
       <div class="progress-item">
         <span>Css</span>

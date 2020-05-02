@@ -11,7 +11,7 @@
             <el-menu-item v-for="(item,i) in navList" :key="i" :index="item.name">
                 {{ item.navItem }}
             </el-menu-item>
-            <span style="position: absolute;padding-top: 20px;right: 35%;font-size: 15px;font-weight: bold"
+            <span style="position: absolute;padding-top: 20px;right: 5%;font-size: 15px;font-weight: bold"
             >{{username}}，欢迎访问系统</span>
             <el-input
                     placeholder="快速搜索..."

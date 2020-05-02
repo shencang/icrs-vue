@@ -85,40 +85,7 @@
                     }
                 })
             },
-            deleteRoom (roomId) {
-                this.$confirm('此操作将永久删除该教室, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                        this.$axios
-                            .post('/rooms/delete', {roomId: roomId}).then(resp => {
-                            if (resp && resp.status === 200) {
-                                this.loadRooms()
-                            }
-                        })
-                    }
-                ).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消删除'
-                    })
-                })
-                // alert(id)
-            },
-            editRoom (item) {
-                this.$refs.edit.dialogFormVisible = true;
-                this.$refs.edit.form = {
-                    roomId: item.roomId,
-                    roomNum: item.roomNum,
-                    roomName: item.roomName,
-                    capacity: item.capacity,
-                    status: item.status,
-                    position: item.position,
-                    description: item.description,
 
-                }
-            },
             bookRoom (item) {
                 this.$refs.edit.dialogFormVisible = true;
                 this.$refs.edit.form = {

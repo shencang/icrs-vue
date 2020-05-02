@@ -6,7 +6,7 @@
         class="toggle"
         type="checkbox"
         @change="toggleTodo(todo)"
-        style="left: 0px;"
+        style="left: 1px;"
       >
       <label @dblclick="editing = true" v-text="todo.text" />
       <button class="destroy" @click="deleteTodo( todo )" />

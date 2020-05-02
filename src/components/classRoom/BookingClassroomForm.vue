@@ -75,7 +75,7 @@
                     numberOfParticipants: 0,
                     delivery: false,
                     type: [],
-                    stuName: '',
+                    expName: '',
                     description: ''
                 },
                 rules: {
