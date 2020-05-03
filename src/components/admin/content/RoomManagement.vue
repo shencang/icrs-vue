@@ -75,7 +75,7 @@
               编辑
             </el-button>
             <el-button
-                    @click.native.prevent="deleteRoom(scope.row.id)"
+                    @click.native.prevent="deleteRoom(scope.row.roomId)"
                     type="text"
                     size="small">
               移除

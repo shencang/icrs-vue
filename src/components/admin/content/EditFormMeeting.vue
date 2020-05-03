@@ -5,7 +5,7 @@
             title="修改活动信息"
             :visible.sync="dialogFormVisible"
             @close="clear">
-      <el-form v-model="form" style="text-align: left" ref="dataForm">
+      <el-form v-model="form" :rules="rules"   style="text-align: left" ref="form">
         <el-form-item label="活动名称" :label-width="formLabelWidth" prop="meetingName">
           <el-input v-model="form.meetingName" autocomplete="off" placeholder="活动名称"></el-input>
         </el-form-item>
@@ -58,10 +58,74 @@
 </template>
 
 <script>
+  import moment from "moment";
+
   export default {
     name: 'EditForm',
     data () {
+      const checkStartTime = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error("时间不能为空"));
+        }
+        setTimeout(() => {
+          if (moment(value,"YYYY-MM-DD HH:mm:ss").isBefore(moment())) {
+            return callback(new Error("开始时间不能早于现在"));
+          } else {
+            callback();
+          }
+        }, 1000);
+
+      };
+      const checkEndTimeToStart = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error("时间不能为空"));
+        }
+        setTimeout(() => {
+          if (moment(value,"YYYY-MM-DD HH:mm:ss").isBefore(moment(this.form.startTime,"YYYY-MM-DD HH:mm:ss"))) {
+            return callback(new Error("结束时间不能早于开始时间"));
+          } else {
+            console.log(moment(value,"YYYY-MM-DD HH:mm:ss").diff(moment(this.form.startTime,"YYYY-MM-DD HH:mm:ss")))
+            if (moment(value,"YYYY-MM-DD HH:mm:ss").diff(moment(this.form.startTime,"YYYY-MM-DD HH:mm:ss"), "hours") > 6) {
+              return callback(new Error("不能预定超过6个小时的活动"));
+            }else {
+              callback();
+            }
+          }
+        }, 1000);
+      };
+
+      const checkNumberOfParticipants = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('人数不能为空'));
+        }
+        setTimeout(() => {
+          if (value<=0) {
+            callback(new Error('不为0或者负数的值'));
+          } else {
+            callback();
+          }
+        }, 1000);
+      };
+
       return {
+        rules: {
+          meetingName: [
+            {required: true, message: '请输入活动名称', trigger: 'blur'},
+            {min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur'}
+          ],
+          startTime: [
+            {validator:checkStartTime,type: 'date', trigger: 'change'}
+          ],
+          endTime: [
+            {validator:checkEndTimeToStart,type: 'date', trigger: 'change'}
+          ],
+          numberOfParticipants: [
+            {validator: checkNumberOfParticipants, trigger: 'change'}
+          ],
+          description: [
+            {required: true, message: '请填写活动形式', trigger: 'blur'}
+          ]
+        },
         dialogFormVisible: false,
         form: {
           roomId: '',

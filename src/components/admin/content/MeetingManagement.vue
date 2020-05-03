@@ -105,7 +105,7 @@
               编辑
             </el-button>
             <el-button
-                    @click.native.prevent="deleteMeeting(scope.row.id)"
+                    @click.native.prevent="deleteMeeting(scope.row.meetingId)"
                     type="text"
                     size="small">
               移除
@@ -145,14 +145,15 @@
                   }
               })
           },
-          deleteMeeting (roomId) {
+          deleteMeeting (meetingId) {
+              console.log(meetingId)
               this.$confirm('此操作将永久删除该会议, 是否继续?', '提示', {
                   confirmButtonText: '确定',
                   cancelButtonText: '取消',
                   type: 'warning'
               }).then(() => {
                       this.$axios
-                          .post('/meeting/delete', {roomId: roomId}).then(resp => {
+                          .post('/meeting/delete', {meetingId: meetingId}).then(resp => {
                           if (resp && resp.status === 200) {
                               this.loadMeeting()
                           }

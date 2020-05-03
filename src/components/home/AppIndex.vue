@@ -48,16 +48,17 @@
             this.getHomeInfo()
             this.checkUserMeetingTimeout()
             this.checkUserMeetingBegin()
+            this.checkRoomIsWillUse()
         },
         methods: {
             checkUserMeetingTimeout(){
-                //todo 用于进入系统时检查用户的会议是否过期
+                // 用于进入系统时检查用户的会议是否过期
                 const _this =this;
                 this.$axios.get('/checkMeetTimeout')
                     .then(resp=>{
                         if (resp && resp.data.code ===200 ){
                             _this.$message({
-                                message:'成功更新系统库状态',
+                                message:'(1/3)成功更新用户状态',
                                 type:  'success'
                             });
                         }
@@ -70,7 +71,20 @@
                     .then(resp=>{
                         if (resp && resp.data.code ===200 ){
                             _this.$message({
-                                message:'成功更新运行状态',
+                                message:'(2/3)成功更新会议状态',
+                                type:  'success'
+                            });
+                        }
+                    })
+            },
+            checkRoomIsWillUse(){
+                // 检查教室是否用占用，进行状态检查并修改
+                const _this =this;
+                this.$axios.get('/checkRoomIsWillUse')
+                    .then(resp=>{
+                        if (resp && resp.data.code ===200 ){
+                            _this.$message({
+                                message:'(3/3)成功更新教室状态',
                                 type:  'success'
                             });
                         }

@@ -2,7 +2,7 @@
     <el-card class="container">
         <h1 align="left">近一周内有效预定活动：</h1>
         <el-table
-                :data="table"
+                :data="tableSevenDay"
                 style="width: 100%"
                 :default-sort="{prop: 'startTime', order: 'descending'}"
         >
@@ -131,6 +131,7 @@
 <script>
 
     import moment from "moment";
+
     export default {
         name: 'Process',
         props: {
@@ -152,24 +153,52 @@
                     reservationIsTid: '',
                     status: '',
                 }],
+                tableSevenDay: [{
+                    meetingName: '',
+                    roomId: '',
+                    numberOfParticipants: '',
+                    reservationTime: '',
+                    empName: '',
+                    roomName: '',
+                    startTime: '',
+                    endTime: '',
+                    description: '',
+                    reservationIsTid: '',
+                    status: '',
+                }]
             };
         },
         mounted() {
             this.loadMeetingListOfUser()
+            this.loadMeetingListOfUserSevenDay()
         },
         methods: {
             surplusTime(startTime) {
-                return  moment(startTime,"YYYY-MM-DD  HH:mm:ss").fromNow();
+                return moment(startTime, "YYYY-MM-DD  HH:mm:ss").fromNow();
             },
 
             loadMeetingListOfUser() {
-                console.log(sessionStorage.getItem("DIS_username"))
                 const _this = this
                 this.$axios.post('meeting/get/user_used', {
                     username: sessionStorage.getItem("DIS_username")
                 }).then(resp => {
                         if (resp && resp.data.code === 200) {
                             _this.table = resp.data.result;
+
+                        }
+                    }
+                )
+
+            },
+
+            loadMeetingListOfUserSevenDay() {
+                const _this = this
+                this.$axios.post('/querySevenDayMeetOfUser', {
+                    username: sessionStorage.getItem("DIS_username")
+                }).then(resp => {
+                        if (resp && resp.data.code === 200) {
+                            _this.tableSevenDay = resp.data.result;
+                            console.log(_this.tableSevenDay)
 
                         }
                     }

@@ -27,18 +27,18 @@ export default {
             list: [{
                 'id':'1',
                 'font':'&#xeb9c;',
-                'title':'会议室查询',
-                'link':'/search'
+                'title':'教室查询与预定',
+                'link':'/classroom'
             },{
                 'id':'2',
                 'font':'&#xeba2;',
-                'title':'会议室预定',
-                'link':'/book'
+                'title':'图书系统',
+                'link':'/library'
             },{
                 'id':'3',
                 'font':'&#xeb99;',
-                'title':'会议室修改',
-                'link':'/change'
+                'title':'个人中心',
+                'link':'/personal'
             }],
             hoverIndex: -1
         }
