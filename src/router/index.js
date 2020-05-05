@@ -13,6 +13,7 @@ import Editor from "@/components/admin/content/ArticleEditor"
 import Articles from '../components/jotter/Articles'
 import ArticleDetails from '@/components/jotter/ArticleDetails'
 import LibraryIndex from '@/components/library/LibraryIndex'
+import GetPhoto from "@/components/home/pages/GetPhoto";
 
 Vue.use(VueRouter);
 
@@ -82,6 +83,12 @@ const routes = [
                     requireAuth: true
                 }
             },
+            {
+                path:'/GetPhoto',
+                name:'GetPhoto',
+                component: GetPhoto,
+
+            }
 
 
         ]

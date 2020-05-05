@@ -76,9 +76,10 @@
             //     })
             // }
             //todo 临时跳转到classroom界面
-            handClickBtn() {
+            handClickBtn(roomId) {
                 this.$router.push({
-                    name: 'ClassRoom',
+                    name: 'GetPhoto',
+                    params:roomId
                 })
             }
         }

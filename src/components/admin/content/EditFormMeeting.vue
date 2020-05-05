@@ -51,7 +51,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="onSubmit">确 定</el-button>
+        <el-button type="primary" @click="onSubmit('form')">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -128,13 +128,7 @@
         },
         dialogFormVisible: false,
         form: {
-          roomId: '',
-          roomNum: '',
-          roomName: '',
-          capacity: '',
-          status: '',
-          position: '',
-          description: '',
+
         },
         formLabelWidth: '120px'
       }
@@ -143,30 +137,37 @@
       clear () {
         this.form = []
       },
-      onSubmit () {
-        this.$axios
-                .post('/meeting/save', {
-                  meetingId: this.form.meetingId,
-                  meetingName:  this.form.meetingName,
-                  reservationIsTid:  this.form.reservationIsTid,
-                  numberOfParticipants:  this.form.numberOfParticipants,
-                  startTime:  this.form.startTime,
-                  endTime:  this.form.endTime,
-                  reservationTime:  this.form.reservationTime,
-                  canceledTime: this.form.canceledTime,
-                  description: this.form.description,
-                  status: this.form.status,
-                  roodId:this.form.roodId,
-                  roomName: this.form.roomName,
-                  empName:this.form.empName,
-                  canceledReason: this.form.canceledReason,
+      onSubmit (formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            this.$axios
+                    .post('/meeting/save', {
+                      meetingId: this.form.meetingId,
+                      meetingName: this.form.meetingName,
+                      reservationIsTid: this.form.reservationIsTid,
+                      numberOfParticipants: this.form.numberOfParticipants,
+                      startTime: this.form.startTime,
+                      endTime: this.form.endTime,
+                      reservationTime: this.form.reservationTime,
+                      canceledTime: this.form.canceledTime,
+                      description: this.form.description,
+                      status: this.form.status,
+                      roodId: this.form.roodId,
+                      roomName: this.form.roomName,
+                      empName: this.form.empName,
+                      canceledReason: this.form.canceledReason,
 
-                }).then(resp => {
-          if (resp && resp.status === 200) {
-            this.dialogFormVisible = false;
-            this.$emit('onSubmit')
+                    }).then(resp => {
+              if (resp && resp.status === 200) {
+                this.dialogFormVisible = false;
+                this.$emit('onSubmit')
+              }
+            })
+          }else {
+            console.log('error submit!!');
+            return false;
           }
-        })
+        });
       }
     }
   }
