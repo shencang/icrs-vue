@@ -66,7 +66,7 @@
 </script>
 <style>
     #paper {
-        background: url("../assets/acg.png") no-repeat center;
+        background: url("../assets/img/bg/nuc_picture1.jpg") no-repeat center;
         height: 100%;
         width: 100%;
         background-size: cover;
