@@ -1,11 +1,8 @@
 <template>
     <div class="quick-nav">
-<!--        <img src="../../assets/img/face/idea.jpg" alt="" class="monster">-->
         <a href="https://github.com/Antabot/White-Jotter/blob/master/README.md" target="_blank">
-<!--            <img src="../../assets/img/icon/icon5.png" alt="" class="readme">-->
         </a>
 <!--        <img src="../../assets/img/icon/icon7.png" alt="" class="spark">-->
-<!--        <img src="../../assets/img/icon/logo.png" alt="" class="logo">-->
 
 
 
