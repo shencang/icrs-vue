@@ -1,6 +1,6 @@
 <template>
     <div style="margin-top: 10px">
-            <h1 class="spark" >智能自习室预约系统</h1>
+            <h1 class="spark" >智慧教室系统</h1>
         <side-menu id="side-menu"></side-menu>
         <div class="home">
             <div id="header-div">

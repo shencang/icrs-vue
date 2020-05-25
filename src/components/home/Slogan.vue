@@ -7,7 +7,7 @@
         </a>
       </el-col>
       <el-col :span="8">
-        <div style="font-size: 45px;color: azure;white-space: nowrap">I.C.R.S.</div>
+        <div style="font-size: 45px;color: azure;white-space: nowrap">智慧教室系统</div>
       </el-col>
 
       <el-col :span="8">
