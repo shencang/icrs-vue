@@ -13,7 +13,7 @@
     "element-ui": "^2.13.0",
     "jquery": "^3.5.0",
     "mavon-editor": "^2.8.3",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
     "stylus": "^0.54.7",
